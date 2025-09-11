@@ -20,6 +20,25 @@ namespace MaarasMatchGame
 
         [SerializeField] bool isAnimating = false;
 
+        [SerializeField] CardManager cardManager;
+
+        public void SetCardManager(CardManager manager)
+        {
+            cardManager = manager;
+        }
+
+        public void SetSlot(Transform slotTransform)
+        {
+            slot = slotTransform;
+        }
+
+        public void SetSlotAsParent()
+        {
+            if (slot == null) return;
+            transform.SetParent(slot);
+            transform.localPosition = Vector3.zero;
+        }
+
         private void OnMouseDown()
         {
             if (!canClick) return;
@@ -28,6 +47,7 @@ namespace MaarasMatchGame
             StartCoroutine(FlipCard());
 
         }
+        
 
         IEnumerator FlipCard()
         {
