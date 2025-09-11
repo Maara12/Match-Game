@@ -28,6 +28,8 @@ namespace MaarasMatchGame
         [SerializeField] Timer timer;
         [SerializeField] ProgressUIHandler progressUIHandler;
 
+        [SerializeField] AudioPlayer audioPlayer;
+
         Action<string> onAttemptsUpdate;
 
         void Awake()
@@ -122,6 +124,7 @@ namespace MaarasMatchGame
                 }
 
                 Debug.Log($"<color=green>Matched!</color>");
+                PlayMatchFoundSound();
             }
             else
             {
@@ -134,6 +137,8 @@ namespace MaarasMatchGame
                 {
                     currentFlippedCards[i].FlipCardDown(currentFlippedCards[i].GetShakeDuration);
                 }
+
+                PlayNoMatchFoundSound();
             }
 
             UpdateCurrentFlippedCardStatus();
@@ -157,6 +162,8 @@ namespace MaarasMatchGame
                 ClearCurrentFlippedCards();
             }
         }
+
+
 
         private void CheckIfAllCardsMatched()
         {
@@ -204,5 +211,27 @@ namespace MaarasMatchGame
             return score;
 
         }
+
+#region Audio Methods
+        public void PlayCardClickSound()
+        {
+            audioPlayer.PlayAudioClip(0);
+        }
+
+        public void PlayCardFlipSound()
+        {
+            audioPlayer.PlayAudioClip(1);
+        }
+
+        public void PlayMatchFoundSound()
+        {
+            audioPlayer.PlayAudioClip(2);
+        }
+
+        public void PlayNoMatchFoundSound()
+        {
+            audioPlayer.PlayAudioClip(3);
+        }
+#endregion
     }
 }

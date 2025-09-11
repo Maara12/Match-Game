@@ -833,6 +833,7 @@ MonoBehaviour:
   currentFlippedCards: []
   timer: {fileID: 2016049392}
   progressUIHandler: {fileID: 2059742005}
+  audioPlayer: {fileID: 370553969}
 --- !u!1 &368589734
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +918,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1207270903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &370553967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 370553968}
+  - component: {fileID: 370553969}
+  m_Layer: 0
+  m_Name: AudioPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &370553968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370553967}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1461.9279, y: 994.6114, z: -3.4035034}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &370553969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370553967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a2cadfbb15cd4469ce2cf493b385b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClipDatas:
+  - name: Card Click
+    clip: {fileID: 8300000, guid: b5198ec845667d94e930f539bd504fb2, type: 3}
+    pitch: 1
+    pitchRangeModifier: 0
+    volume: 1
+    position: {x: 0, y: 0, z: 0}
+    useOwnPosition: 1
+  - name: Card Flip
+    clip: {fileID: 8300000, guid: f94ae2bb7faca6f4c89061ead45e055c, type: 3}
+    pitch: 1
+    pitchRangeModifier: 0
+    volume: 0
+    position: {x: 0, y: 0, z: 0}
+    useOwnPosition: 1
+  - name: Match Found
+    clip: {fileID: 8300000, guid: ab7f45881ddc0074da06b987283f2226, type: 3}
+    pitch: 1
+    pitchRangeModifier: 0
+    volume: 1
+    position: {x: 0, y: 0, z: 0}
+    useOwnPosition: 1
+  - name: No Match Found
+    clip: {fileID: 8300000, guid: bb65985ab4bb19f4291b0152327c9990, type: 3}
+    pitch: 1
+    pitchRangeModifier: 0
+    volume: 1
+    position: {x: 0, y: 0, z: 0}
+    useOwnPosition: 1
 --- !u!1001 &378838344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3870,6 +3944,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1207270903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1976513336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1976513337}
+  - component: {fileID: 1976513338}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1976513337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976513336}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1976513338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976513336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fbe6eee3740c84288ca3fa83543866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioObjectPrefab: {fileID: 5618189920427137856, guid: 6af3249277684114e91f8dbba29a40e0, type: 3}
 --- !u!1001 &1995260825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4267,3 +4386,5 @@ SceneRoots:
   - {fileID: 342819810}
   - {fileID: 2016049391}
   - {fileID: 2059742004}
+  - {fileID: 1976513337}
+  - {fileID: 370553968}

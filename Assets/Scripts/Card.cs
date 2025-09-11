@@ -65,6 +65,8 @@ namespace MaarasMatchGame
             if (isFacingUp) return;
 
             if (isFlippingUp) return;
+
+            cardManager.PlayCardClickSound();
             StartCoroutine(FlipCardUp());
 
         }
@@ -73,7 +75,9 @@ namespace MaarasMatchGame
         IEnumerator FlipCardUp()
         {
             canClick = false;
+            cardManager.PlayCardFlipSound();
             cardManager.SetCanClickAll(false);
+
             isFlippingUp = true;
 
             cardManager.AddCardToCurrentFlippedCards(this);
@@ -118,6 +122,7 @@ namespace MaarasMatchGame
             {
                 yield return new WaitForSeconds(delay);
             }
+            cardManager.PlayCardFlipSound();
             cardManager.SetCanClickAll(false);
             canClick = false;
             isFlippingDown = true;
