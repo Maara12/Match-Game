@@ -2,24 +2,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProgressUIHandler : MonoBehaviour
+namespace MaarasMatchGame
 {
-    [SerializeField] Text timerText_Runtime;
-    [SerializeField] Text attemptsText_Runtime;
-
-    public void SetTimerText(string text)
+    public class ProgressUIHandler : MonoBehaviour
     {
-        if (timerText_Runtime != null)
+        [SerializeField] Text timerText_Runtime;
+        [SerializeField] Text attemptsText_Runtime;
+
+        public void SetTimerText(string text)
         {
-            timerText_Runtime.text = text;
+            if (timerText_Runtime != null)
+            {
+                timerText_Runtime.text = text;
+            }
         }
-    }
 
-    public void SetAttemptsText(string text)
-    {
-        if (attemptsText_Runtime != null)
+        public void SetAttemptsText(string text)
         {
-            attemptsText_Runtime.text = text;
+            if (attemptsText_Runtime != null)
+            {
+                attemptsText_Runtime.text = text;
+            }
         }
     }
 }

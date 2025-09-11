@@ -35,7 +35,7 @@ namespace MaarasMatchGame
             if (!timerActive) return false;
 
             currentTime += Time.deltaTime;
-            string formattedTime = FormatTime(currentTime);
+            formattedTime = FormatTime(currentTime);
             //Debug.Log(formattedTime);
             onTimerRun?.Invoke(formattedTime);
             return true;

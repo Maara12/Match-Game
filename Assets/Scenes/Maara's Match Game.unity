@@ -828,8 +828,11 @@ MonoBehaviour:
   attempts: 0
   attemptCounter: 0
   winCheckDelay: 1
+  scoreMultiplier: 1000
   canClickAll: 1
   currentFlippedCards: []
+  timer: {fileID: 2016049392}
+  progressUIHandler: {fileID: 2059742005}
 --- !u!1 &368589734
 GameObject:
   m_ObjectHideFlags: 0

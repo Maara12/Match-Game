@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace MaarasMatchGame
         [SerializeField] int attempts = 0;
         [SerializeField] int attemptCounter = 0;
         [SerializeField] float winCheckDelay = 1f;
+        [SerializeField] float scoreMultiplier = 1000f;
 
         [SerializeField] bool canClickAll = true;
         public bool GetCanClickAll => canClickAll;
@@ -24,10 +26,23 @@ namespace MaarasMatchGame
         [SerializeField] List<Card> currentFlippedCards = new List<Card>();
 
         [SerializeField] Timer timer;
+        [SerializeField] ProgressUIHandler progressUIHandler;
+
+        Action<string> onAttemptsUpdate;
 
         void Awake()
         {
             InitializeAllCards();
+        }
+
+        void OnEnable()
+        {
+            onAttemptsUpdate += progressUIHandler.SetAttemptsText;
+        }
+
+        void OnDisable()
+        {
+            onAttemptsUpdate -= progressUIHandler.SetAttemptsText;
         }
 
         void Start()
@@ -63,7 +78,7 @@ namespace MaarasMatchGame
 
                 for (int i = 0; i < slots.Count; i++)
                 {
-                    int randomCardIndex = Random.Range(0, cardsWithUnassignedSlots.Count);
+                    int randomCardIndex = UnityEngine.Random.Range(0, cardsWithUnassignedSlots.Count);
                     Card randomCard = cardsWithUnassignedSlots[randomCardIndex];
 
                     randomCard.SetSlot(slots[i]);
@@ -137,7 +152,7 @@ namespace MaarasMatchGame
 
         public void UpdateCurrentFlippedCardStatus()
         {
-            if(attemptCounter == 0)
+            if (attemptCounter == 0)
             {
                 ClearCurrentFlippedCards();
             }
@@ -154,8 +169,11 @@ namespace MaarasMatchGame
             }
 
             Debug.Log($"<color=yellow>All Cards Matched in {attempts} attempts!</color>");
+            float timeTaken = timer.StopTimer();
+            int score = (int)CalculateScore(timeTaken, attempts);
+            Debug.Log($"<color=cyan>Score: {score}</color>");
         }
-        
+
         IEnumerator DelayedCheckAllCardsMatched(float delay)
         {
             yield return new WaitForSeconds(delay);
@@ -175,6 +193,16 @@ namespace MaarasMatchGame
         private void UpdateAttempt()
         {
             attempts++;
+            onAttemptsUpdate?.Invoke(attempts.ToString());
+        }
+
+        private float CalculateScore(float timeTaken, int attemptsMade)
+        {
+            float score = 0f;
+            score = 1 / (timeTaken + attemptsMade) * (scoreMultiplier / 50);
+            score *= scoreMultiplier;
+            return score;
+
         }
     }
 }
