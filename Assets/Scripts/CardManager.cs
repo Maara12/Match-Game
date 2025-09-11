@@ -16,6 +16,10 @@ namespace MaarasMatchGame
         [SerializeField] int matchCount = 2;
         [SerializeField] int attempts = 0;
         [SerializeField] int attemptCounter = 0;
+        [SerializeField] float winCheckDelay = 1f;
+
+        [SerializeField] bool canClickAll = true;
+        public bool GetCanClickAll => canClickAll;
 
         [SerializeField] List<Card> currentFlippedCards = new List<Card>();
 
@@ -67,6 +71,93 @@ namespace MaarasMatchGame
                 Debug.LogError("Slots and Cards count do not match");
             }
 
+        }
+        public void SetCanClickAll(bool value)
+        {
+            canClickAll = value;
+        }
+
+        public void CheckIfCardsMatch()
+        {
+            if (attemptCounter != 0) return;
+            if (currentFlippedCards.Count != matchCount) return;
+            bool isMatched = true;
+
+            for (int i = 1; i < currentFlippedCards.Count; i++)
+            {
+                if (currentFlippedCards[i].GetMatchID != currentFlippedCards[0].GetMatchID)
+                {
+                    isMatched = false;
+                    break;
+                }
+            }
+
+            if (isMatched)
+            {
+                Debug.Log($"<color=green>Matched!</color>");
+            }
+            else
+            {
+                for (int i = 0; i < currentFlippedCards.Count; i++)
+                {
+                    currentFlippedCards[i].FlipCardDown();
+                }
+            }
+
+            UpdateCurrentFlippedCardStatus();
+            StartCoroutine(DelayedCheckAllCardsMatched(winCheckDelay));
+        }
+
+        public void AddCardToCurrentFlippedCards(Card card)
+        {
+            currentFlippedCards.Add(card);
+        }
+
+        public void ClearCurrentFlippedCards()
+        {
+            currentFlippedCards.Clear();
+        }
+
+        public void UpdateCurrentFlippedCardStatus()
+        {
+            if(attemptCounter == 0)
+            {
+                ClearCurrentFlippedCards();
+            }
+        }
+
+        private void CheckIfAllCardsMatched()
+        {
+            for (int i = 0; i < allCards.Count; i++)
+            {
+                if (!allCards[i].GetIsFacingUp)
+                {
+                    return;
+                }
+            }
+
+            Debug.Log($"<color=yellow>All Cards Matched in {attempts} attempts!</color>");
+        }
+        
+        IEnumerator DelayedCheckAllCardsMatched(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            CheckIfAllCardsMatched();
+        }
+
+        public void UpdateAttemptCounter()
+        {
+            attemptCounter++;
+            if (attemptCounter >= matchCount)
+            {
+                UpdateAttempt();
+                attemptCounter = 0;
+            }
+        }
+
+        private void UpdateAttempt()
+        {
+            attempts++;
         }
     }
 }
