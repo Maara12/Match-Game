@@ -23,9 +23,16 @@ namespace MaarasMatchGame
 
         [SerializeField] List<Card> currentFlippedCards = new List<Card>();
 
+        [SerializeField] Timer timer;
+
         void Awake()
         {
             InitializeAllCards();
+        }
+
+        void Start()
+        {
+            timer.StartTimer();
         }
 
         private void InitializeAllCards()
