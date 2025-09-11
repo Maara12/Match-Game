@@ -94,13 +94,23 @@ namespace MaarasMatchGame
 
             if (isMatched)
             {
+                for (int i = 0; i < currentFlippedCards.Count; i++)
+                {
+                    currentFlippedCards[i].AnimateCardScale();
+                }
+
                 Debug.Log($"<color=green>Matched!</color>");
             }
             else
             {
                 for (int i = 0; i < currentFlippedCards.Count; i++)
                 {
-                    currentFlippedCards[i].FlipCardDown();
+                    currentFlippedCards[i].ShakeCard();
+                }
+
+                for (int i = 0; i < currentFlippedCards.Count; i++)
+                {
+                    currentFlippedCards[i].FlipCardDown(currentFlippedCards[i].GetShakeDuration);
                 }
             }
 
