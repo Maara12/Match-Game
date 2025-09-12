@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace MaarasMatchGame
@@ -10,7 +9,7 @@ namespace MaarasMatchGame
 
         public int GetMatchID => matchID;
         [SerializeField] SpriteRenderer matchSpriteRenderer;
-        [SerializeField] Transform slot;
+        Transform slot;
         [SerializeField] bool isFacingUp = false;
         public bool GetIsFacingUp => isFacingUp;
         [SerializeField] bool canClick = true;
@@ -24,12 +23,12 @@ namespace MaarasMatchGame
         public float GetShakeDuration => shakeDuration;
         [SerializeField] float shakeStrength = 10f;
 
-        [SerializeField] bool isFlippingUp = false;
-        [SerializeField] bool isFlippingDown = false;
-        [SerializeField] bool isCardShaking = false;
-        [SerializeField] bool isCardInScaleAnimation = false;
+        bool isFlippingUp = false;
+        bool isFlippingDown = false;
+        bool isCardShaking = false;
+        bool isCardInScaleAnimation = false;
 
-        [SerializeField] CardManager cardManager;
+        CardManager cardManager;
 
         public void SetCardManager(CardManager manager)
         {
