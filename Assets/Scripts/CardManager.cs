@@ -182,7 +182,10 @@ namespace MaarasMatchGame
             Debug.Log($"<color=cyan>Score: {score}</color>");
             UpdateGameOverUI(score);
             gameOverUIHandler.ShowAndAnimatePanel();
+            PlayWinSound();
         }
+
+
 
         private void UpdateGameOverUI(int score)
         {
@@ -194,11 +197,11 @@ namespace MaarasMatchGame
         //this method is called from Restart button from GameOverUI
         public void RestartGameDelayed(float delay)
         {
-            if(gameOverUIHandler.gameObject.activeSelf)
+            if (gameOverUIHandler.gameObject.activeSelf)
             {
                 gameOverUIHandler.HideAndAnimatePanel();
             }
-            
+
             StartCoroutine(RestartGameCoroutine(delay));
         }
 
@@ -252,7 +255,7 @@ namespace MaarasMatchGame
 
         }
 
-#region Audio Methods
+        #region Audio Methods
         public void PlayCardClickSound()
         {
             audioPlayer.PlayAudioClip(0);
@@ -271,6 +274,10 @@ namespace MaarasMatchGame
         public void PlayNoMatchFoundSound()
         {
             audioPlayer.PlayAudioClip(3);
+        }
+        private void PlayWinSound()
+        {
+            audioPlayer.PlayAudioClip(4);
         }
 #endregion
 

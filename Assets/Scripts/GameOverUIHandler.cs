@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace MaarasMatchGame
 {
     public class GameOverUIHandler : MonoBehaviour
     {
+        [SerializeField] string mainMenuSceneName;
         [SerializeField] Text timeTakenText_GameOverUI;
         [SerializeField] Text attempsText_GameOverUI;
         [SerializeField] Text scoreText;
@@ -32,7 +34,11 @@ namespace MaarasMatchGame
                 HideAndAnimatePanel();
             }
         }
-        
+
+        public void OnMainMenuButtonClicked()
+        {
+            SceneManager.LoadScene(mainMenuSceneName);
+        }
 
         public void SetTimeTakenText(string timeTaken)
         {

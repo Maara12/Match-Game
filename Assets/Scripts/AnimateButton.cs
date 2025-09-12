@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace MaarasMatchGame
@@ -17,8 +18,11 @@ namespace MaarasMatchGame
         bool isScalingUp = false;
         bool isScalingDown = false;
 
+        public UnityEvent onPointerEnter;
+
         public void OnPointerEnter(PointerEventData eventData)
         {
+            onPointerEnter?.Invoke();
             ScaleUpButton();
         }
 
