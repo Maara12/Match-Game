@@ -37,6 +37,11 @@ namespace MaarasMatchGame
 
         public void OnMainMenuButtonClicked()
         {
+            Invoke(nameof(LoadMainMenuScene),1f);
+        }
+
+        private void LoadMainMenuScene()
+        {
             SceneManager.LoadScene(mainMenuSceneName);
         }
 

@@ -179,6 +179,7 @@ namespace MaarasMatchGame
             Debug.Log($"<color=yellow>All Cards Matched in {attempts} attempts!</color>");
             float timeTaken = timer.StopTimer();
             int score = (int)CalculateScore(timeTaken, attempts);
+            SaveHighScore(score);
             Debug.Log($"<color=cyan>Score: {score}</color>");
             UpdateGameOverUI(score);
             gameOverUIHandler.ShowAndAnimatePanel();
@@ -192,6 +193,7 @@ namespace MaarasMatchGame
             gameOverUIHandler.SetTimeTakenText(timer.GetFormattedTime);
             gameOverUIHandler.SetAttemptsText(attempts.ToString());
             gameOverUIHandler.SetScoreText(score.ToString());
+            gameOverUIHandler.SetHighScoreText(GetHighScore().ToString());
         }
 
         //this method is called from Restart button from GameOverUI
@@ -254,6 +256,23 @@ namespace MaarasMatchGame
             return score;
 
         }
+#region SAVE Methods
+        private void SaveHighScore(int score)
+        {
+            float highScore = PlayerPrefs.GetInt("HighScore", 0);
+
+            if (score > highScore)
+            {
+                PlayerPrefs.SetInt("HighScore", score);
+                PlayerPrefs.Save();
+            }
+        }
+
+        private int GetHighScore()
+        {
+            return PlayerPrefs.GetInt("HighScore", 0);
+        }   
+#endregion
 
         #region Audio Methods
         public void PlayCardClickSound()
