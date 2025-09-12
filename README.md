@@ -8,7 +8,7 @@ Scripts:
 
 Core:
 
-1. CardManager.cs - it is the most important script and it handles all the core logic of checking matched cards, randomising cards at start of every game, checking win, communicating with UI and audio, tracking attempts, Restart logic and saving highscore.
+1. CardManager.cs - it is the most important script and it handles all the core logic of checking matched cards, randomising cards at start of every game, checking win, communicating with UI and audio, calculating scores, tracking attempts, Restart logic and saving highscore.
 
 2. Card.cs - it has all core methods associated with cards like clicking on a card(Main Input), flipping a card, animation methods like scaling and shaking cards, with its own reset logic.
 
