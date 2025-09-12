@@ -3432,7 +3432,7 @@ GameObject:
   - component: {fileID: 1145958694}
   - component: {fileID: 1145958693}
   m_Layer: 5
-  m_Name: PlayAgainButton
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3501,7 +3501,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1145958694}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 357899476}
+        m_TargetAssemblyTypeName: MaarasMatchGame.CardManager, Assembly-CSharp
+        m_MethodName: RestartGameDelayed
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.3
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1145958694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5580,15 +5592,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -3.079887
-      outSlope: -3.079887
+      inSlope: -0.8773357
+      outSlope: -0.8773357
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.11160407
-      value: -0.34372792
+      time: 0.22796291
+      value: -0.2
       inSlope: 0.7264104
       outSlope: 0.7264104
       tangentMode: 0
@@ -5598,8 +5610,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1.5125328
-      outSlope: 1.5125328
+      inSlope: 1.5543295
+      outSlope: 1.5543295
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

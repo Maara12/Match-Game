@@ -191,9 +191,34 @@ namespace MaarasMatchGame
             gameOverUIHandler.SetScoreText(score.ToString());
         }
 
-        public void RestartGame()
+        //this method is called from Restart button from GameOverUI
+        public void RestartGameDelayed(float delay)
         {
+            if(gameOverUIHandler.gameObject.activeSelf)
+            {
+                gameOverUIHandler.HideAndAnimatePanel();
+            }
             
+            StartCoroutine(RestartGameCoroutine(delay));
+        }
+
+        IEnumerator RestartGameCoroutine(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            for (int i = 0; i < allCards.Count; i++)
+            {
+                allCards[i].ResetCard();
+            }
+            attempts = 0;
+            attemptCounter = 0;
+            canClickAll = true;
+            ClearCurrentFlippedCards();
+            progressUIHandler.SetDefaultTimerText();
+            progressUIHandler.SetDefaultAttemptsText();
+
+            SetAllCardsToRandomSlots();
+            timer.StartTimer();
         }
 
         IEnumerator DelayedCheckAllCardsMatched(float delay)

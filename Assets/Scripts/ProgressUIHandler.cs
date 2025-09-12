@@ -17,11 +17,27 @@ namespace MaarasMatchGame
             }
         }
 
+        public void SetDefaultTimerText()
+        {
+            if (timerText_Runtime != null)
+            {
+                timerText_Runtime.text = "00.00";
+            }
+        }
+
         public void SetAttemptsText(string text)
         {
             if (attemptsText_Runtime != null)
             {
                 attemptsText_Runtime.text = text;
+            }
+        }
+        
+        public void SetDefaultAttemptsText()
+        {
+            if (attemptsText_Runtime != null)
+            {
+                attemptsText_Runtime.text = "0";
             }
         }
     }

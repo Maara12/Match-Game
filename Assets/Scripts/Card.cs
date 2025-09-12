@@ -209,8 +209,21 @@ namespace MaarasMatchGame
             canClick = true;
             cardManager.SetCanClickAll(true);
         }
-        
-        
+
+        public void ResetCard()
+        {
+
+            matchSpriteRenderer.enabled = false;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            isFacingUp = false;
+            canClick = true;
+            isFlippingUp = false;
+            isFlippingDown = false;
+            isCardShaking = false;
+            isCardInScaleAnimation = false;
+            slot = null;
+            
+        }
 
     }
 
