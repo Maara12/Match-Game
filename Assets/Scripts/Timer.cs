@@ -12,6 +12,8 @@ namespace MaarasMatchGame
 
         [SerializeField] string formattedTime = "00:00";
 
+        public string GetFormattedTime => formattedTime;
+
         Action<string> onTimerRun;
     
         void OnEnable()

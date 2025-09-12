@@ -48,13 +48,7 @@ namespace MaarasMatchGame
             transform.localPosition = Vector3.zero;
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                AnimateCardScale();
-            }
-        }
+        
 
         private void OnMouseDown()
         {

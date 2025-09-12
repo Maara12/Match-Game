@@ -27,6 +27,7 @@ namespace MaarasMatchGame
 
         [SerializeField] Timer timer;
         [SerializeField] ProgressUIHandler progressUIHandler;
+        [SerializeField] GameOverUIHandler gameOverUIHandler;
 
         [SerializeField] AudioPlayer audioPlayer;
 
@@ -179,6 +180,20 @@ namespace MaarasMatchGame
             float timeTaken = timer.StopTimer();
             int score = (int)CalculateScore(timeTaken, attempts);
             Debug.Log($"<color=cyan>Score: {score}</color>");
+            UpdateGameOverUI(score);
+            gameOverUIHandler.ShowAndAnimatePanel();
+        }
+
+        private void UpdateGameOverUI(int score)
+        {
+            gameOverUIHandler.SetTimeTakenText(timer.GetFormattedTime);
+            gameOverUIHandler.SetAttemptsText(attempts.ToString());
+            gameOverUIHandler.SetScoreText(score.ToString());
+        }
+
+        public void RestartGame()
+        {
+            
         }
 
         IEnumerator DelayedCheckAllCardsMatched(float delay)
@@ -233,5 +248,6 @@ namespace MaarasMatchGame
             audioPlayer.PlayAudioClip(3);
         }
 #endregion
+
     }
 }
